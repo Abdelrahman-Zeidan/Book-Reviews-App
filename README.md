@@ -16,3 +16,4 @@ This is books review project which consist of:
 
 
 
+Youtube recorded video showing the app: https://www.youtube.com/watch?v=k3xn1SEMbAU
