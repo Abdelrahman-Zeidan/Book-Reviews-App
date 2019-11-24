@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+        <title>Books and Reviews</title>
+        
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='book.css')}}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-sm navbar-dark primary-color" style="background-color: #7ed56f;">
+
+            <a class="navbar-brand" href="/home">
+                <img src="/static/img/Logo1.png" alt="Logo" style="width: 60px; height: 60px;">
+            </a>   
+        
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home </a>
+                    </li>
+            
+                </ul>
+
+                <form action="{{ url_for('home') }}" method="POST" class="form-inline">
+                        <div class="form-group">
+                          <input class="form-control" type="text"  name="SearchText" placeholder="Search For Books" style="width: 500px; margin-right: 10px;">
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                </form>
+    
+
+                <ul class="nav navbar-nav navbar-right">
+    
+                        <li class="nav-item">
+                            <a class="nav-link text-primary font-weight-bold font-italic" href="">{{ username }}</a>
+                        </li>
+        
+                        <li class="nav-item">
+                            <a class="nav-link text-danger font-weight-bold" href="{{ url_for('logout') }}">Logout</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </nav>
+
+
+        <div class="container Books">
+            <h3 class="Books__heading text-success">Search Results...</h3>
+            <ul class="list-group Books__list">
+                {% for isbn, title, author, year in BookDetails %}
+                    <li class="list-group-item  Books__list--item ">
+                        <h2 class="text-center w-75 p-3 mx-auto border border-secondary rounded-pill">{{ title }}</h2>
+                        <h4 class="Books__list--item-h6 font-weight-bold"><span class="text-dark">Author:</span>  {{ author }}</h4>
+                        <h4 class="font-weight-bold">Year: {{ year }}</h4>
+                        <h4 class="font-weight-bold">ISBN: {{ isbn }}</h4>
+                        <h4 class="font-weight-bold">Total Ratings: <span class="text-warning"> {{ work_ratings_count }}</span> </h4>
+                        <h4 class="font-weight-bold">Average Rating: <span class="text-success"> {{ average_rating }} of 5</span></h4>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+
+        {% if reviews != None %}
+        {% for a in reviews %}
+            <div class="container border reviews" style="padding: 10px; margin-bottom: 10px;">
+                <div>
+                    <h5 class="text-danger">Rating: {{ a.rating }} of 5</h5>
+                    <h6> {{ a.review }} </h6>
+                    <h6 class="text-primary">{{ a.username }}</h6>
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+    
+        <div class="container bg-light border" style="padding: 10px; margin-bottom: 10px;">
+            <form action="{{ url_for('book', isbn=data.isbn) }}" method="POST">
+                <div class="form-group">
+                    <textarea class="form-control animated" name="review" rows="5" placeholder="Enter your review here..."></textarea>
+                </div>
+        
+                <div class="form-group">
+                    <select class="form-control" name="rate" required>
+                        <option selected value disabled>Select Rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+        
+                <div class="form-group text-center">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </div>
+            </form>
+
+            <h3 class="text-danger text-center w-75 p-3 mx-auto">{{ MessageCanNotSubmit }}</h3>
+        </div>
+
+    </body>
+</html>

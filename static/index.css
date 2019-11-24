@@ -1,0 +1,75 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.navbar {
+  font-size: 2rem;
+  margin: 0 2rem;
+}
+
+.heading {
+  margin: 2rem;
+  margin-top: 0;
+  height: 85vh;
+  width: auto;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.7), rgba(40, 180, 133, 0.1)), url(/static/img/Books2.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  text-transform: uppercase;
+}
+.heading-primary {
+  color: #fff;
+  position: absolute;
+  left: 43rem;
+  top: 15rem;
+}
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  position: absolute;
+  left: 13rem;
+}
+.heading-button {
+  width: 30rem;
+  height: 5rem;
+  position: absolute;
+  left: 49rem;
+  top: 35rem;
+}
+.heading--login {
+  width: 45rem;
+  border: 1px solid rgba(231, 218, 218, 0.199);
+  position: absolute;
+  left: 43rem;
+  top: 11rem;
+}
+.heading--remember {
+  font-size: 1.2rem;
+}
+
+.booksImg {
+  margin: 2rem;
+  margin-left: 25rem;
+  text-align: center;
+}
+
+/*# sourceMappingURL=index.css.map */

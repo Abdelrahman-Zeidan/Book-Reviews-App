@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+        <title>Home</title>
+        
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='dashboard.css')}}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-sm navbar-dark primary-color" style="background-color: #7ed56f;">
+
+            <a class="navbar-brand" href="home">
+                <img src="/static/img/Logo1.png" alt="Logo" style="width: 60px; height: 60px;">
+            </a>   
+        
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="home">Home </a>
+                    </li>
+            
+                </ul>
+
+                <form action="{{ url_for('home') }}" method="POST" class="form-inline">
+                        <div class="form-group">
+                          <input class="form-control" type="text"  name="SearchText" placeholder="Search For Books" style="width: 500px; margin-right: 10px;">
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                </form>
+    
+
+                <ul class="nav navbar-nav navbar-right">
+    
+                        <li class="nav-item">
+                            <a class="nav-link text-primary font-weight-bold font-italic" href="#">{{ username }}</a>
+                        </li>
+        
+                        <li class="nav-item">
+                            <a class="nav-link text-danger font-weight-bold" href="{{ url_for('logout') }}">Logout</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </nav>
+
+
+        <div class="container Books">
+            <h3 class="Books__heading text-success">Search Results...</h3>
+            <ul class="list-group Books__list">
+                {% for isbn, title, author, year in books %}
+                    <li class="list-group-item  Books__list--item">
+                        <h1 class="text-center w-75 p-3 mx-auto border border-secondary rounded-pill"><a href="{{ url_for('book', isbn=isbn) }}">{{ title }}</a></h1> 
+                    </li>
+                {% endfor %}
+            </ul>
+
+
+            <div>
+                <h5 class="text-danger p-2">{{ message }}</h5>
+            </div>
+        </div>
+        
+
+    </body>
+</html>

@@ -1,0 +1,18 @@
+.Books {
+  background-color: rgba(199, 196, 196, 0.795);
+  margin: 10px;
+}
+.Books__heading {
+  padding: 10px;
+}
+.Books__list {
+  padding: 20px;
+}
+.Books__list--item {
+  font-size: 30px;
+}
+.Books__list--item-h6 {
+  color: red;
+}
+
+/*# sourceMappingURL=dashboard.css.map */
